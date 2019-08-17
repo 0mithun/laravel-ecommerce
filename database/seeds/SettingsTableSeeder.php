@@ -8,8 +8,7 @@ class SettingsTableSeeder extends Seeder
     /**
      * @var array
      */
-
-     protected $settings = [
+    protected $settings = [
         [
             'key'                  =>  'site_name',
             'value'                =>  'E-commerce Application'
@@ -22,7 +21,7 @@ class SettingsTableSeeder extends Seeder
             'key'                  =>  'default_email_address',
             'value'                =>  'admin@admin.com'
         ],
-        
+
         [
             'key'                  =>  'currency_code',
             'value'                =>  'USD'
@@ -99,9 +98,8 @@ class SettingsTableSeeder extends Seeder
             'key'                  =>  'paypal_client_secret',
             'value'                =>  ''
         ],
-        
-     ];
 
+    ];
     /**
      * Run the database seeds.
      *
@@ -109,15 +107,13 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        foreach($this->settings as $key => $setting){
+        foreach ($this->settings as $key => $setting) {
             $result = Setting::create($setting);
-
-            if(!$result){
+            if (!$result) {
                 $this->command->info("Insert failed at record {$key}");
                 return;
             }
         }
-
-        $this->command->info("Inserted ".count($this->settings)." records");
+        $this->command->info("Inserted " . count($this->settings) . " records");
     }
 }

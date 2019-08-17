@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Admin;
-
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +14,6 @@ class AdminsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-
         Admin::create([
             'name'      =>  'Mithun Halder',
             'email'     =>  'halderm86@gmail.com',
