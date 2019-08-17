@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Config;
+
 use App\Models\Setting;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
 
 class SettingServiceProvider extends ServiceProvider
 {
@@ -15,7 +18,7 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('settings', function($app){
+        $this->app->bind('settings', function ($app) {
             return new Setting();
         });
 
@@ -30,10 +33,10 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(!App::runnInConsole() && count(Schema::getColumnListing('settings'))){
+        if (!\App::runningInConsole() && count(Schema::getColumnListing('settings'))) {
             $settings = Setting::all();
-            foreach($settings as $key => $setting){
-                Config::set('settings.'.$setting->key, $setting->value);
+            foreach ($settings as $key => $setting) {
+                Config::set('settings.' . $setting->key, $setting->value);
             }
         }
     }
