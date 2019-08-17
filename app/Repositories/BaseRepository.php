@@ -9,12 +9,13 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /**
  * Class BaseRepository
- * 
+ *
  * @package App\Repositories
- * 
+ *
  */
 
- class BaseRepository implements BaseContract{
+class BaseRepository implements BaseContract
+{
 
     /**
      * @var model
@@ -24,8 +25,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
     /**
      * BaseRepository constructor
-    * @param Model $model
-    */
+     * @param Model $model
+     */
 
     public function __construct(Model $model)
     {
@@ -37,17 +38,19 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
      * @return mixed
      */
 
-    public function create(array $attributes){
+    public function create(array $attributes)
+    {
         return $this->model->create($attributes);
     }
 
     /**
-    * @param array $attributes
-    * @param int $id
-    * @return bool
-    */
+     * @param array $attributes
+     * @param int $id
+     * @return bool
+     */
 
-    public function update(array $attributes, int $id):bool{
+    public function update(array $attributes, int $id): bool
+    {
         return $this->find($id)->update($attributes);
     }
 
@@ -58,37 +61,41 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
      * @return mixed
      */
 
-    public function all($columns = array('*'), string $orderBy = 'id', string $sortBy='asc' ){
-        return $this->model->orderBy($orderBy,$sortBy)->get($columns);
+    public function all($columns = array('*'), string $orderBy = 'id', string $sortBy = 'asc')
+    {
+        return $this->model->orderBy($orderBy, $sortBy)->get($columns);
     }
 
     /**
      * @param int $id
-    * @return mixed
-    */
+     * @return mixed
+     */
 
-    public function find(int $id){
+    public function find(int $id)
+    {
         return $this->model->find($id);
     }
 
     /**
-     * 
+     *
      * @param int $id
      * @return mixed
      * @throws ModelNotFoundException
      */
 
-    public function findOneOrFail(int $id){
+    public function findOneOrFail(int $id)
+    {
         return $this->model->findOrFail($id);
     }
 
 
     /**
-    * @param array $data
-    * @return mixed
-    */
+     * @param array $data
+     * @return mixed
+     */
 
-    public function findBy(array $data){
+    public function findBy(array $data)
+    {
         return $this->model->where($data)->all();
     }
 
@@ -97,29 +104,30 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
      * @return mixed
      */
 
-    public function findOneBy(array $data){
+    public function findOneBy(array $data)
+    {
         return $this->model->where($data)->firstOrFail();
     }
 
 
     /**
      * @param array $data
-    * @return mixed
-    * @throws ModelNotFoundException
-    */
+     * @return mixed
+     * @throws ModelNotFoundException
+     */
 
-    public function findOneByOrFail(array $data){
+    public function findOneByOrFail(array $data)
+    {
         return $this->model->where($data)->firstOrFail();
     }
-        
+
     /**
      * @param int $id
-    * @return bool 
-    */
+     * @return bool
+     */
 
-    public function delete(int $id){
+    public function delete(int $id)
+    {
         return $this->model->find($id)->delete();
     }
-
-
- }
+}

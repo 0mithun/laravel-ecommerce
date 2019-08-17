@@ -2,19 +2,26 @@
 
 namespace App\Models;
 
+use Config;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Config;
 
 class Setting extends Model
 {
+    /**
+     * @var string
+     */
     protected $table = 'settings';
+
+    /**
+     * @var array
+     */
     protected $fillable = [
         'key', 'value'
     ];
 
 
     /**
-     * 
+     *
      * @param $key
      */
 
@@ -42,7 +49,7 @@ class Setting extends Model
           $entry->saveOrFail();
 
           Config::set('key', $value);
-          if(Config::get($key == $value)){
+          if(Config::get($key) == $value){
             return true;
           }
           return false;

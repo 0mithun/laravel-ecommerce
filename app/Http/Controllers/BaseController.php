@@ -7,10 +7,11 @@ use App\Traits\FlashMessages;
 
 class BaseController extends Controller
 {
+
     use FlashMessages;
 
     /**
-     * 
+     *
      * @var null
      */
 
@@ -20,78 +21,82 @@ class BaseController extends Controller
     /**
      * @param $title
      * @param $subtitle
-     * 
+     *
      */
 
-     protected function setPageTitle($title, $subtitle){
-         view()->share(['title'=>$title, 'subtitle'=>$subtitle]);
-     }
+    protected function setPageTitle($title, $subtitle)
+    {
+        view()->share(['pageTitle' => $title, 'subtitle' => $subtitle]);
+    }
 
-     /**
-      * @param int $errorCode
-      * @param null $message
-      * @return \Illuminate\Http\Response
-      */
+    /**
+     * @param int $errorCode
+     * @param null $message
+     * @return \Illuminate\Http\Response
+     */
 
-      protected function showErrorPage($errorCode = 404, $message=null){
+    protected function showErrorPage($errorCode = 404, $message = null)
+    {
         $data['message'] = $message;
 
-        return response()->view('errors.'.$errorCode, $data, $errorCode);
-      }
+        return response()->view('errors.' . $errorCode, $data, $errorCode);
+    }
 
 
-      /**
-       * 
-       * @param bool $error
-       * @param int $responseCode
-       * @param array $message
-       * @param null $data
-       * @return \Illuminate\Http\JsonResponse
-       */
+    /**
+     *
+     * @param bool $error
+     * @param int $responseCode
+     * @param array $message
+     * @param null $data
+     * @return \Illuminate\Http\JsonResponse
+     */
 
-       protected function responseJson($error= true, $responseCode=200, $message = [], $data=null){
-            return response()->json([
-                'errors'        =>  $error,
-                'response_code' =>  $responseCode,
-                'message'       =>  $message,
-                'data'          =>  $data
-            ]);
-       }
+    protected function responseJson($error = true, $responseCode = 200, $message = [], $data = null)
+    {
+        return response()->json([
+            'errors'        =>  $error,
+            'response_code' =>  $responseCode,
+            'message'       =>  $message,
+            'data'          =>  $data
+        ]);
+    }
 
 
-       /**
-        * @param $route
-        * @param $message
-        * @param string $type
-        * @param bool $error
-        * @param bool $showOldInputWhenError
-        * @return \Illuminate\Http\RedirectResponse
-        */
+    /**
+     * @param $route
+     * @param $message
+     * @param string $type
+     * @param bool $error
+     * @param bool $showOldInputWhenError
+     * @return \Illuminate\Http\RedirectResponse
+     */
 
-        protected function responseRedirect($route, $message, $type='info', $error=false,$withOldInputWhenError=false){
-            $this->setFlashMessage($message, $type);
-            $this->showFlashMessages();
+    protected function responseRedirect($route, $message, $type = 'info', $error = false, $withOldInputWhenError = false)
+    {
+        $this->setFlashMessage($message, $type);
+        $this->showFlashMessages();
 
-            if($error && $withOldInputWhenError){
-                return redirect()->back()->withInput();
-            }
-            return redirect()->route($route);
+        if ($error && $withOldInputWhenError) {
+            return redirect()->back()->withInput();
         }
+        return redirect()->route($route);
+    }
 
 
-        /**
-         * @param $message
-         * @param string $type
-         * @param bool $error
-         * @param bool $withOldInputWhenError
-         * @return \Illuminate\Http\RedirectResponse
-         */
-        protected function responseRedirectBack($message, $type='info', $error=false, $withOldInputWhenError=false){
-            $this->setFlashMessage($message, $type);
-            $this->showFlashMessages();
+    /**
+     * @param $message
+     * @param string $type
+     * @param bool $error
+     * @param bool $withOldInputWhenError
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function responseRedirectBack($message, $type = 'info', $error = false, $withOldInputWhenError = false)
+    {
 
-            return redirect()->back();
-        }
+        $this->setFlashMessage($message, $type);
+        $this->showFlashMessages();
 
-
+        return redirect()->back();
+    }
 }
