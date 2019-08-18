@@ -3,11 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use App\Traits\UploadAble;
+use Illuminate\Http\UploadedFile;
 use App\Contracts\CategoryContract;
 use App\Repositories\BaseRepository;
-use App\Traits\UploadAble;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Doctrine\Instantiator\Exception\InvalidArgumentException;
 
 /**
  * Class CategoryRepository
@@ -60,12 +62,12 @@ class CategoryRepository extends BaseRepository implements CategoryContract
     /**
      * @param array $params
      * @return Category|mixed
-     */
+    */
 
     public function createCategory(array $params)
     {
         try {
-            $collection = null;
+            $collection = collect($params);
             $image = null;
             if ($collection->has('image') && ($params['image'] instanceof UploadedFile)) {
                 $image = $this->uploadOne($params['image'], 'categories');

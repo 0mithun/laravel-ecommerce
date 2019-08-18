@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     //     Route::get('/{id}/delete', 'CategoryController@index')->name('admin.categories.delete');
     // });
     Route::name('admin.')->group(function () {
-        Route::resource('categories', 'CategoryController')->except('show');
+        Route::resource('categories', 'CategoryController')->except('show','destroy');
+        Route::get('/categories/{category}', 'CategoryController@destroy')->name('categories.destroy');
     });
 });
