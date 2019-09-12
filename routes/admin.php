@@ -19,6 +19,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('/settings', 'SettingController@update')->name('admin.settings.update');
 
 
+
+
     // Route::group(['prefix' => 'categories'], function () {
     //     Route::get('/', 'CategoryController@index')->name('admin.categories.index');
     //     Route::get('/create', 'CategoryController@create')->name('admin.categories.create');
@@ -30,5 +32,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::name('admin.')->group(function () {
         Route::resource('categories', 'CategoryController')->except('show','destroy');
         Route::get('/categories/{category}', 'CategoryController@destroy')->name('categories.destroy');
+
+    });
+
+    Route::name('admin.')->group(function(){
+        Route::resource('attributes', 'AttributeController')->except(['show','destroy']);
+        Route::get('/attributes/{attribute}','AttributeController@destroy')->name('attributes.destroy');
     });
 });
