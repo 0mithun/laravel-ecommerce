@@ -1,5 +1,6 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
@@ -39,4 +40,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::resource('attributes', 'AttributeController')->except(['show','destroy']);
         Route::get('/attributes/{attribute}','AttributeController@destroy')->name('attributes.destroy');
     });
+
+    Route::post('/attributes/get-values','AttributeValueController@getValues');
+
+    Route::post('/attributes/add-values','AttributeValueController@addValues');
+    Route::post('/attributes/update-values','AttributeValueController@updateValues');
+    Route::post('/attributes/delete-values','AttributeValueController@deleteValues');
 });
