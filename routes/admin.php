@@ -41,6 +41,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/attributes/{attribute}','AttributeController@destroy')->name('attributes.destroy');
     });
 
+    Route::name('admin.')->group(function(){
+        Route::resource('brands', 'BrandController')->except(['show','destroy']);
+        Route::get('/brands/{id}/delete','BrandController@destroy')->name('brands.destroy');
+    });
+
     Route::post('/attributes/get-values','AttributeValueController@getValues');
 
     Route::post('/attributes/add-values','AttributeValueController@addValues');
