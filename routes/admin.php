@@ -46,9 +46,18 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
         Route::get('/brands/{id}/delete','BrandController@destroy')->name('brands.destroy');
     });
 
+    Route::name('admin.')->group(function(){
+        Route::resource('products', 'ProductController')->except(['show','destroy']);
+    });
+
+    Route::post('/images/upload','ProductImageController@upload')->name('admin.products.images.upload');
+    Route::get('/images/{id}/delete','ProductImageController@delete')->name('admin.products.images.delete');
+
     Route::post('/attributes/get-values','AttributeValueController@getValues');
 
     Route::post('/attributes/add-values','AttributeValueController@addValues');
     Route::post('/attributes/update-values','AttributeValueController@updateValues');
     Route::post('/attributes/delete-values','AttributeValueController@deleteValues');
+
+
 });
