@@ -18,6 +18,7 @@
                     <li class="nav-item">
                         <a href="#general" class="nav-link active" data-toggle="tab">General</a>
                         <a href="#images" class="nav-link " data-toggle="tab">Images</a>
+                        <a href="#attributes" class="nav-link " data-toggle="tab">Attributes</a>
                     </li>
                 </ul>
             </div>
@@ -274,6 +275,9 @@
                         @endif
                     </div>
                 </div>
+                <div class="tab-pane" id="attributes">
+                    <product-attributes :productid="{{ $product->id }}"></product-attributes>
+                </div>
             </div>
         </div>
     </div>
@@ -281,6 +285,7 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('backend/js/app.js') }}"></script>
     <script src="{{ asset('backend/js/plugins/select2.min.js') }}"></script>
     <script src="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.js') }}"></script>
     <script src="{{ asset('backend/js/plugins/bootstrap-notify.min.js') }}"></script>
@@ -331,5 +336,5 @@
 @endpush
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backend/js/plugins/dropzone/dist/min/dropzone.min.css') }}">
 @endsection

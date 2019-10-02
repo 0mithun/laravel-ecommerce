@@ -60,4 +60,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('/attributes/delete-values','AttributeValueController@deleteValues');
 
 
+
+    //Load attributes on the page load
+    Route::get('products/attributes/load','ProductAttributeController@loadAttributes');
+
+    //Load product attributes on the page load
+    Route::post('products/attributes','ProductAttributeController@productAttributes');
+
+    //Load option values for a attribute
+    Route::post('products/attributes/values','ProductAttributeController@loadValues');
+
+    //Add product attribute to the current product
+    Route::post('products/attributes/add','ProductAttributeController@addAttribute');
+
+    //Delete product attribute from the current product
+    Route::post('products/attributes/delete','ProductAttributeController@deleteAttribute');
+
+
 });
