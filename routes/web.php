@@ -12,10 +12,14 @@
 */
 require('admin.php');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'site.pages.homepage');
 
-Route::get('login', function(){
-    return 'login';
-})->name('login');
+Auth::routes();
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('login', function(){
+//     return 'login';
+// })->name('login');
