@@ -38,10 +38,10 @@
             <div class="col-md-4">
                 <label for="price" class="control-label">Price</label>
                 <input type="text" class="form-control" id="price" v-model="currentPrice">
-                <small class="text-danger">This price will be added to the main price of product on frontend</small>
+                <small class="text-danger">This price will be added to the main price of product on frontend.</small>
             </div>
             <div class="col-md-12">
-                <button class="btn btn-sm btn-primary" @click="addProductAttribute"><i class="fa fa-plus"></i></button>
+                <button class="btn btn-sm btn-primary" @click="addProductAttribute"><i class="fa fa-plus"></i> Add</button>
             </div>
         </div>
     </div>
@@ -104,6 +104,14 @@ export default {
         this.loadProductAttributes(this.productid)
     },
     methods:{
+        loadAttributes(){
+            axios.get('/admin/products/attributes/load')
+            .then((result) => {
+                this.attributes = result.data
+            }).catch((err) => {
+                console.log(err)
+            });
+        },
         loadProductAttributes(id){
             axios.post('/admin/products/attributes',{id:id})
             .then((result) => {
@@ -113,14 +121,7 @@ export default {
                 console.log(err)
             });
         },
-        loadAttributes(){
-            axios.get('/admin/products/attributes/load')
-            .then((result) => {
-                this.attributes = result.data
-            }).catch((err) => {
-                console.log(err)
-            });
-        },
+
         selectAttribute(attribute){
             this.currentAttributeId = attribute.id
             axios.post('/admin/products/attributes/values',{id:attribute.id})
@@ -137,13 +138,13 @@ export default {
             this.valueSelected = true
             this.currentValue = value.value
             this.currentQty = value.quantity
-            this.currentValue = value.price
+            this.currentPrice = value.price
 
         },
 
         addProductAttribute(){
-            if(this.currentQty === null || this.currentPrice ===null){
-                this.$swal("Error, Some values are missing",{
+            if(this.currentQty === null || this.currentPrice === null){
+                this.$swal("Error, Some values are missing.",{
                     icon:'error'
                 })
             }else{
@@ -181,7 +182,6 @@ export default {
                 }
             ).then((willDelete) => {
                 if(willDelete){
-                    console.log(pa.id)
                     axios.post('/admin/products/attributes/delete',{id: pa.id})
                     .then((result) => {
                         if(result.data.status == 'success'){

@@ -2022,23 +2022,23 @@ __webpack_require__.r(__webpack_exports__);
     this.loadProductAttributes(this.productid);
   },
   methods: {
-    loadProductAttributes: function loadProductAttributes(id) {
+    loadAttributes: function loadAttributes() {
       var _this = this;
 
-      axios.post('/admin/products/attributes', {
-        id: id
-      }).then(function (result) {
-        _this.productAttributes = result.data;
-        console.log(result);
+      axios.get('/admin/products/attributes/load').then(function (result) {
+        _this.attributes = result.data;
       })["catch"](function (err) {
         console.log(err);
       });
     },
-    loadAttributes: function loadAttributes() {
+    loadProductAttributes: function loadProductAttributes(id) {
       var _this2 = this;
 
-      axios.get('/admin/products/attributes/load').then(function (result) {
-        _this2.attributes = result.data;
+      axios.post('/admin/products/attributes', {
+        id: id
+      }).then(function (result) {
+        _this2.productAttributes = result.data;
+        console.log(result);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2060,13 +2060,13 @@ __webpack_require__.r(__webpack_exports__);
       this.valueSelected = true;
       this.currentValue = value.value;
       this.currentQty = value.quantity;
-      this.currentValue = value.price;
+      this.currentPrice = value.price;
     },
     addProductAttribute: function addProductAttribute() {
       var _this4 = this;
 
       if (this.currentQty === null || this.currentPrice === null) {
-        this.$swal("Error, Some values are missing", {
+        this.$swal("Error, Some values are missing.", {
           icon: 'error'
         });
       } else {
@@ -2105,7 +2105,6 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: true
       }).then(function (willDelete) {
         if (willDelete) {
-          console.log(pa.id);
           axios.post('/admin/products/attributes/delete', {
             id: pa.id
           }).then(function (result) {
@@ -37889,7 +37888,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("small", { staticClass: "text-danger" }, [
                     _vm._v(
-                      "This price will be added to the main price of product on frontend"
+                      "This price will be added to the main price of product on frontend."
                     )
                   ])
                 ]),
@@ -37901,7 +37900,7 @@ var render = function() {
                       staticClass: "btn btn-sm btn-primary",
                       on: { click: _vm.addProductAttribute }
                     },
-                    [_c("i", { staticClass: "fa fa-plus" })]
+                    [_c("i", { staticClass: "fa fa-plus" }), _vm._v(" Add")]
                   )
                 ])
               ])
