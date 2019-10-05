@@ -19,4 +19,6 @@ Auth::routes();
 Route::group(['namespace' => 'Site'], function () {
     Route::get('/category/{slug}','CategoryController@show')->name('category.show');
     Route::get('/product/{slug}','ProductController@show')->name('product.show');
+
+    Route::post('/product/add/cart','ProductController@addToCart')->name('product.add.cart');
 });
