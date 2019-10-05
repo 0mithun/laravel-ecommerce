@@ -85,7 +85,12 @@
                                                                     <option value="0" data-price="0">Select a {{ $attribute->name }}</option>
                                                                     @foreach($product->attributes as $attributeValue)
                                                                         @if($attributeValue->attribute_id == $attribute->id)
-                                                                            <option value="{{ $attributeValue->value }}" data-price="{{ $attributeValue->price }}">{{ ucwords($attributeValue->value.' +'.$attributeValue->price) }}</option>
+                                                                            <option
+                                                                                data-price="{{ $attributeValue->price }}"
+                                                                                value="{{ $attributeValue->value }}" >
+                                                                                {{ ($attributeValue) }}
+                                                                                {{ ucwords($attributeValue->value.'+'.$attributeValue->price) }}
+                                                                            </option>
                                                                         @endif
                                                                     @endforeach
                                                                 </select>
