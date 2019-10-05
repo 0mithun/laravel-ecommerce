@@ -60,6 +60,18 @@ use InvalidArgumentException;
 
 
     /**
+     * @param string $slug
+     * @return mixed
+     * @throws ModelNotFoundException
+     */
+
+    public function findProductBySlug($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+        return $product;
+    }
+
+    /**
      * @param array $columns
      * @return Product|mixed
      */

@@ -29,6 +29,13 @@ interface ProductContract{
 
 
     /**
+     * @param string $slut
+     * @return mixed
+     */
+
+     public function findProductBySlug($slug);
+
+    /**
      * @params array $columns
      * @return mixed
      */
