@@ -11,6 +11,12 @@ namespace App\Contracts;
 interface CategoryContract
 {
     /**
+     * @return mixed
+     */
+    public function treeList();
+
+
+    /**
      * @param string $order
      * @param string $sort
      * @param array $columns
@@ -28,6 +34,12 @@ interface CategoryContract
     public function findCategoryById(int $id);
 
 
+    /**
+     * @param string $slug
+     * @return mixed
+     */
+
+     public function findBySlug($slug);
 
     /**
      * @param array $params

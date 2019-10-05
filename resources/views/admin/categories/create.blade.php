@@ -65,10 +65,10 @@
                             id="parent_id"
                         >
                             <option value="0">Select a parent category</option>
-                            @foreach($categories as $category)
+                            @foreach($categories as $key => $category)
                             <option
-                                value="{{ $category->id }}"
-                                >{{ $category->name }}</option
+                                value="{{ $key }}"
+                                >{{ $category }}</option
                             >
                             @endforeach
                         </select>

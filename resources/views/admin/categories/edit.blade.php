@@ -68,17 +68,17 @@
                             id="parent_id"
                         >
                             <option value="0">Select a parent category</option>
-                            @foreach($categories as $category)
-                            @if($targetCategory->parent_id == $category->id)
+                            @foreach($categories as $key => $category)
+                            @if($targetCategory->parent_id == $key)
                                 <option
-                                    value="{{ $category->id }}"
+                                    value="{{ $key }}"
                                     selected
-                                    >{{ $category->name }}</option
+                                    >{{ $category }}</option
                                 >
                             @else
                                 <option
-                                    value="{{ $category->id }}"
-                                    >{{ $category->name }}</option
+                                    value="{{ $key }}"
+                                    >{{ $category }}</option
                                 >
                             @endif
 

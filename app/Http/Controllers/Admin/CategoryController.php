@@ -43,7 +43,10 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        $categories = $this->categoryRepository->listCategories('id','ASC');
+        // $categories = $this->categoryRepository->listCategories('id','ASC');
+
+        $categories = $this->categoryRepository->treeList();
+
 
         $this->setPageTitle('Categories', 'Create Category');
 
@@ -95,7 +98,7 @@ class CategoryController extends BaseController
     {
         $targetCategory = $this->categoryRepository->findCategoryById($id);
 
-        $categories = $this->categoryRepository->listCategories();
+        $categories = $this->categoryRepository->treeList();
 
         $this->setPageTitle('Categories', 'Edit Category: '. $targetCategory->name);
 

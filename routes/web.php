@@ -16,10 +16,6 @@ Route::view('/', 'site.pages.homepage');
 
 Auth::routes();
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('login', function(){
-//     return 'login';
-// })->name('login');
+Route::group(['namespace' => 'Site'], function () {
+    Route::get('/category/{slug}','CategoryController@show')->name('category.show');
+});
