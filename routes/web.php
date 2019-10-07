@@ -30,6 +30,10 @@ Route::group(['namespace' => 'Site'], function () {
     Route::group(['middleware' => ['auth']], function () {
         Route::get('checkout','CheckoutController@getCheckout')->name('checkout.index');
         Route::post('checkout/order','CheckoutController@placeOrder')->name('checkout.place.order');
+
+        Route::get('checkout/payment/complete','CheckoutController@complete')->name('checkout.payment.complete');
+
+        Route::get('account/orders','AccountController@getOrders')->name('account.orders');
     });
 
 });

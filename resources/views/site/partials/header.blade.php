@@ -60,6 +60,7 @@
                                         {{ Auth::user()->full_name }} <span class="caret"></span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="{{ route('account.orders') }}" class="dropdown-item">Orders</a>
                                         <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
