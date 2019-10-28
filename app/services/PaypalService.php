@@ -91,6 +91,7 @@ class PaypalService{
 
         try{
             $payment->create($this->payPal);
+            return 'ok';
         }catch(PayPalConnectionException $e){
             echo $e->getCode();
             echo $e->getData();
