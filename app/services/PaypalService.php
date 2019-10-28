@@ -21,15 +21,16 @@ class PaypalService{
 
     public function __construct()
     {
-        if(config('settings.paypal_client_id') == '' || config('settings.paypal_secret_id') == ''){
+        if(config('settings.paypal_client_id') == '' || config('settings.paypal_client_secret') == ''){
+
             return \redirect()->back()->with('error','No Paypal settings found.');
         }
 
         $this->payPal = new ApiContext(
-            new OAuthTokenCredential(config('settings.paypal_client_id'), config('settings.paypal_secret_id'))
+            new OAuthTokenCredential(config('settings.paypal_client_id'), config('settings.paypal_client_secret'))
         );
 
-        // $this->payPal->setConfig(array('mode'=>'sandbox'));
+        //$this->payPal->setConfig(array('mode'=>'sandbox'));
     }
 
     public function processPayment($order){
@@ -59,8 +60,7 @@ class PaypalService{
 
         $details->setShipping($shipping)
             ->setTax($tax)
-            ->setSubtotal(springf('%0.2f', $order->grand_total));
-            ;
+            ->setSubtotal(sprintf('%0.2f', $order->grand_total));
 
         $amount = new Amount();
         $amount->setCurrency(config('settings.currency_code'))

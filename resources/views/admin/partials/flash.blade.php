@@ -6,14 +6,6 @@
 
 @endphp
 
-    @if($errors)
-        @foreach ($errors as $key => $value)
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button class="close" type="button" data-dismiss="alert">&times;</button>
-                <strong>Error!</strong> {{ $value }}
-            </div>
-        @endforeach
-    @endif
 
 
     @if($messages)

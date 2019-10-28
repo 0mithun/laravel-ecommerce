@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use Cart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderItem;
 use App\Contracts\OrderContract;
 
@@ -28,17 +29,16 @@ class OrderRepository extends BaseRepository implements OrderContract{
             'last_name'         =>  $params['last_name'],
             'address'           =>  $params['address'],
             'city'              =>  $params['city'],
-            'country'           =>  $params['county'],
+            'country'           =>  $params['country'],
             'post_code'         =>  $params['post_code'],
             'phone_number'      =>  $params['phone_number'],
-            'notes'             =>  $params['notes']
+            'notes'             =>  $params['order_notes']
         ]);
 
         if($order){
             $items = Cart::getContent();
             foreach ($items as $item) {
                 $product = Product::where('name', $item->name)->first();
-
                 $orderItem = new OrderItem([
                     'product_id'    =>  $product->id,
                     'quantity'      =>  $item->quantity,

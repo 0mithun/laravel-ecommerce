@@ -20,7 +20,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->enum('status',['pending','processing','completed','decline']);
-            $table->decimal('grand_total', 8, 6);
+            $table->decimal('grand_total', 8, 2);
             $table->unsignedInteger('item_count');
 
             $table->boolean('payment_status')->default(1);
