@@ -27,6 +27,14 @@ interface ProductContract{
     public function findProductById(int $id);
 
 
+    /**
+     * @param $slug
+     * @return mixed
+     */
+
+     public function findProductBySlug($slug);
+
+     
 
     /**
      * @params array $columns

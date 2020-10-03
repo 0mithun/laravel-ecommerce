@@ -30,6 +30,14 @@ interface CategoryContract
 
 
     /**
+     * @param  $slug
+     * @return mixed
+     */
+
+    public function findBySlug($slug);
+
+
+    /**
      * @param array $params
      * @return mixed
      */
@@ -50,4 +58,9 @@ interface CategoryContract
      */
 
     public function deleteCategory($id);
+
+    /**
+ * @return mixed
+ */
+public function treeList();
 }

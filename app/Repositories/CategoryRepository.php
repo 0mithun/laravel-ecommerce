@@ -59,6 +59,19 @@ class CategoryRepository extends BaseRepository implements CategoryContract
         }
     }
 
+
+      /**
+     * @param  $slug
+     * @return mixed
+     */
+
+    public function findBySlug($slug){
+        return Category::with('products')
+            ->where('slug', $slug)
+            ->where('menu',1)
+            ->first();
+    }
+
     /**
      * @param array $params
      * @return Category|mixed
@@ -95,6 +108,7 @@ class CategoryRepository extends BaseRepository implements CategoryContract
     {
         $category = $this->findCategoryById($params['id']);
         $collection = collect($params)->except('_token');
+        $image = null;
 
         if ($collection->has('image') && ($params['image'] instanceof UploadedFile)) {
             if ($category->image != null) {
@@ -127,5 +141,18 @@ class CategoryRepository extends BaseRepository implements CategoryContract
         $category->delete();
 
         return $category;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function treeList(){
+        return Category::orderByRaw('-name ASC')
+            ->get()
+            ->nest()
+            ->setIndent('|-- ')
+            ->listsFlattened('name')
+        ;
     }
 }

@@ -58,6 +58,15 @@ use InvalidArgumentException;
     }
 
 
+        /**
+     * @param $slug
+     * @return mixed
+     */
+
+     public function findProductBySlug($slug){
+         return Product::where('slug',$slug)->first();
+     }  
+
 
     /**
      * @param array $columns

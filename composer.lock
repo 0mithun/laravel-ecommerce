@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94d4bf9ac7f4a933030e46a346ee2917",
+    "content-hash": "b859d79fdde7a442ed3113d7e034d9ad",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -420,6 +420,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -466,6 +467,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -2834,6 +2836,58 @@
             "time": "2017-11-27T11:13:29+00:00"
         },
         {
+            "name": "typicms/nestablecollection",
+            "version": "1.1.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TypiCMS/NestableCollection.git",
+                "reference": "f98feb398cde33d577acac0d8fc74c0d5d25207b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TypiCMS/NestableCollection/zipball/f98feb398cde33d577acac0d8fc74c0d5d25207b",
+                "reference": "f98feb398cde33d577acac0d8fc74c0d5d25207b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~4.2|~5.0|~6.0|~7.0|~8.0",
+                "illuminate/support": "~4.2|~5.0|~6.0|~7.0|~8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TypiCMS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel De Backer",
+                    "email": "sdebacker@gmail.com"
+                }
+            ],
+            "description": "A Laravel Package that extends Collection to handle unlimited nested items following adjacency list model.",
+            "keywords": [
+                "TypiCMS",
+                "adjacency list",
+                "collection",
+                "eloquent",
+                "laravel",
+                "nested set",
+                "tree"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/typicms",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-09-30T08:16:40+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v3.4.0",
             "source": {
@@ -4659,5 +4713,6 @@
     "platform": {
         "php": "^7.1.3"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
