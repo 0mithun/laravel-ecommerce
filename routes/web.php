@@ -31,4 +31,9 @@ Route::group(['namespace'=>'Site'], function(){
     Route::get('/product/{slug}','ProductController@show')->name('product.show');
 
     Route::post('/product/add/cart','ProductController@addToCart')->name('product.add.cart');
+
+
+    Route::get('/cart','CartController@getCart')->name('checkout.cart');
+    Route::get('/cart/item/{id}/remove','CartController@removeItem')->name('checkout.cart.remove');
+    Route::get('/cart/clear','CartController@clearCart')->name('checkout.cart.clear');
 });

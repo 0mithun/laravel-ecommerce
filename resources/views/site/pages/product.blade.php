@@ -101,7 +101,7 @@
                                             <dl class="dlist-inline">
                                                 <dt>Quantity:</dt>
                                                 <dd>
-                                                    <input type="number" class="form-control" name="qty" min="1" max="{{ $product->quantity }}" style="width:70px">
+                                                    <input type="number" class="form-control" name="qty" min="1" max="{{ $product->quantity }}" style="width:70px" value="1">
                                                     <input type="hidden" name="productId" value="{{ $product->id }}">
                                                     <input type="hidden" name="price" id="finalPrice" value="{{ $product->sale_price != '' ? $product->sale_price : $product->price }}">
                                                 </dd>

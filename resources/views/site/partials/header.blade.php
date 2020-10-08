@@ -25,12 +25,12 @@
                     <div class="widgets-wrap d-flex justify-content-end ">
                         <div class="widget-header mr-0">
 
-                            <a href="#" class="icontext">
+                        <a href="{{ route('checkout.cart') }}" class="icontext">
                                 <div class="icon-wrap  round text-secondary ">
                                     <i class="fa fa-shopping-cart"></i>
                                 </div>
                                 <div class="text-wrap">
-                                    <small>3 Items</small>
+                                    <small>{{ $cartCount }} Items</small>
                                 </div>
                             </a>
                         </div>

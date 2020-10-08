@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Contracts\ProductContract;
 use App\Http\Controllers\Controller;
 use App\Contracts\AttributeContract;
-
+use Cart;
 class ProductController extends Controller
 {
     
@@ -32,6 +32,13 @@ class ProductController extends Controller
     }
 
     public function addToCart(Request $request){
-        dd($request);
+        $product = $this->productRepository->findProductById($request->productId);
+        $options = $request->except('_token','productId','price','qty');
+
+        Cart::add(\uniqid(), $product->name, $request->price, $request->qty, $options);
+
+        return \redirect()->back()->with('message', 'Item added to cart successfully.');
     }
+
+
 }
