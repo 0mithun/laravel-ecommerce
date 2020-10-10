@@ -15,7 +15,7 @@ class CheckoutController extends Controller
     }
 
     public function getCheckout(){
-        return view('sites.pages.checkout');
+        return view('site.pages.checkout');
     }
 
     public function placeOrder(Request $request){

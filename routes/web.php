@@ -9,8 +9,8 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-require('admin.php');
+ */
+require 'admin.php';
 
 Route::view('/', 'site.pages.homepage');
 
@@ -24,23 +24,19 @@ Auth::routes();
 //     return 'login';
 // })->name('login');
 
+Route::group(['namespace' => 'Site'], function () {
+    Route::get('/category/{slug}', 'CategoryController@show')->name('category.show');
+    Route::get('/product/{slug}', 'ProductController@show')->name('product.show');
 
+    Route::post('/product/add/cart', 'ProductController@addToCart')->name('product.add.cart');
 
-Route::group(['namespace'=>'Site'], function(){
-    Route::get('/category/{slug}','CategoryController@show')->name('category.show');
-    Route::get('/product/{slug}','ProductController@show')->name('product.show');
+    Route::get('/cart', 'CartController@getCart')->name('checkout.cart');
+    Route::get('/cart/item/{id}/remove', 'CartController@removeItem')->name('checkout.cart.remove');
+    Route::get('/cart/clear', 'CartController@clearCart')->name('checkout.cart.clear');
 
-    Route::post('/product/add/cart','ProductController@addToCart')->name('product.add.cart');
-
-
-    Route::get('/cart','CartController@getCart')->name('checkout.cart');
-    Route::get('/cart/item/{id}/remove','CartController@removeItem')->name('checkout.cart.remove');
-    Route::get('/cart/clear','CartController@clearCart')->name('checkout.cart.clear');
-
-
-    Route::group(['middleware'=>['auth']], function(){
-        Route::get('/checkout','CheckoutController@getCheckout')->name('checkout.index');
-        Route::get('/checkout/order','CheckoutController@placeOrder')->name('checkout.place.order');
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('/checkout', 'CheckoutController@getCheckout')->name('checkout.index');
+        Route::post('/checkout/order', 'CheckoutController@placeOrder')->name('checkout.place.order');
     });
 
 });
