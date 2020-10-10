@@ -36,7 +36,9 @@ class CheckoutController extends Controller {
     public function placeOrder( Request $request ) {
         $order = $this->orderRepository->storeOrderDetails( $request->all() );
 
-        if ( $order->$this->paypal->processPayment() );
+        if ( $order ) {
+            $this->paypal->processPayment();
+        }
 
         return \redirect()->back()->with( 'Order not placed.' );
 
