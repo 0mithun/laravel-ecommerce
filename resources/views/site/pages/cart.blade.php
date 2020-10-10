@@ -96,7 +96,7 @@
                             </div>
                         </aside>
                     </figure>
-                    <a href="#" class="btn btn-success btn-lg btn-block">Proceed to Checkout</a>
+                <a href="{{ route('checkout.index') }}" class="btn btn-success btn-lg btn-block">Proceed to Checkout</a>
                 </aside>
             </div>
         </div>
